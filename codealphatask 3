@@ -1,0 +1,134 @@
+html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class="brand"><img src="Screenshot (199).png" alt="Logo" />Spotify</li>
+      <li>Home</li>
+      <li>About</li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>SPOTIFY - Your Favorite Songs</h1>
+    <div class="songItem">
+      <span> Heeriye</span>
+      <span>Janniye</span>
+      <span>Tum tak</span>
+      <span>Lover</span>
+      <span>August</span>
+      <span>Wilflower</span>
+
+
+      <button onclick="playPause()">Play</button>
+    </div>
+
+    <div class="container">
+    <h1>SPOTIFY - Mostly Played  </h1>
+    <div class="songItem">
+      <span>Kinni Kinni</span>
+      <span>With You</span>
+      <span>Princess Don't Cry</span>
+      <span>Qatal</span>
+      <span>Aadayein Teri</span>
+      <span>ME JALO</span>
+
+
+      <button onclick="playPause()">Play</button>
+    </div>
+   <audio id="audioPlayer" controls>
+  <source src="EOB.mp3.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<a href="https://open.spotify.com/track/YOUR_TRACK_ID" target="_blank">Listen on Spotify</a>
+<iframe style="border-radius:72px" 
+  src="https://open.spotify.com/embed/track/YOUR_TRACK_ID" 
+  width="300" height="250" frameborder="60" 
+  allowtransparency="true" allow="encrypted-media">
+</iframe>
+
+
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+css:
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #9ec4b0;
+  color: white;
+}
+
+nav {
+  background-color: #1db954;
+  padding: 40px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 40px;
+  font-weight: bold;
+}
+
+.brand img {
+  height: 300px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.songItem {
+  background: #a5c872;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #1db954;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+js:
+let audio = document.getElementById("audioPlayer");
+let isPlaying = false;
+
+function playPause() {
+  if (isPlaying) {
+    audio.pause();
+  } else {
+    audio.play();
+  }
+  isPlaying = !isPlaying;
+}
+
