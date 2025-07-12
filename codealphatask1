@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMAGE GALLERY</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #c2b5b5;
+    }
+    h2 {
+      text-align: center;
+      padding: 40px;
+    }
+    .buttons {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .buttons button {
+      margin: 15px;
+      padding: 20px 25px;
+      border: whitesmoke;
+      background: #9a2ab1;
+      color: rgb(229, 226, 226);
+      cursor: pointer;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+      padding: 30px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      border-radius: 5px;
+      transition: transform 0.5s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(192, 152, 152, 0.8);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .lightbox button {
+      margin: 30px;
+      padding: 8px 15px;
+      border: none;
+      background: white;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .gallery img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>My Image Gallery</h2>
+
+  <div class="buttons">
+    <button onclick="filter('all')">All</button>
+    <button onclick="filter('VITTHAL')">VITTHAL</button>
+    <button onclick="filter('DEVOTEE')">DEVOTEE</button>
+  </div>
+
+  <div class="gallery" id="gallery">
+    <img src="Screenshot (213).png" class="VITTHAL" onclick="showLightbox(this)">
+    <img src="Screenshot (214).png" class="DEVOTEE" onclick="showLightbox(this)">
+    <img src="Screenshot (215).png" class="DEVOTEE" onclick="showLightbox(this)">
+    <img src="Screenshot (216).png" class="VITTHAL" onclick="showLightbox(this)">
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="bigImg" src="" alt="">
+    <button onclick="prev()">Previous</button>
+    <button onclick="closeBox()">Close</button>
+    <button onclick="next()">Next</button>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const bigImg = document.getElementById('bigImg');
+    let currentIndex = 0;
+
+    function showLightbox(el) {
+      bigImg.src = el.src;
+      lightbox.style.display = 'flex';
+      currentIndex = Array.from(images).indexOf(el);
+    }
+
+    function closeBox() {
+      lightbox.style.display = 'none';
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % images.length;
+      bigImg.src = images[currentIndex].src;
+    }
+
+    function prev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      bigImg.src = images[currentIndex].src;
+    }
+
+    function filter(type) {
+      images.forEach(img => {
+        if (type === 'all' || img.classList.contains(type)) {
+          img.style.display = 'block';
+        } else {
+          img.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
+    
